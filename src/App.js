@@ -1,23 +1,36 @@
 import React from 'react';
 import './App.css';
-import { Post } from './Components/Post.js';
+import { RusInput } from './Components/RusInput.js';
+import { EngInput } from './Components/EngInput.js';
 
 class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            posts: []
+            rusName: '',
+            engName: ''
         };
+        this.handleInputData = this.handleInputData.bind(this);
     }
-    componentDidMount() {
-        fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(response => response.json())
-            .then(json => this.setState({ posts: json }));
+    handleInputData(name) {
+        this.setState({
+            rusName: name,
+            engName: name
+        });
     }
     render() {
-        return this.state.posts.map((post, index) => (
-            <Post key={index} props={post} />
-        ));
+        return (
+            <fragment>
+                <RusInput
+                    value={this.state.rusName}
+                    handler={this.handleInputData}
+                />
+                <EngInput
+                    value={this.state.engName}
+                    handler={this.handleInputData}
+                />
+            </fragment>
+        );
     }
 }
 
