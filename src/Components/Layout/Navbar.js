@@ -9,11 +9,11 @@ const Navbar = ({titles}) => {
         <nav className='navbar bg-primary'>
             <ul>
                 {titles.map((title, id) => <li key={id}>
-                    <Link to={`/${title}`}>{title.toUpperCase()}</Link>
+                    <Link to={`/${title}`}><i className="far fa-address-card" />  {title.toUpperCase()}</Link>
                 </li>)}
             </ul>
             <ul>
-                <li><Link to='/'>HOME</Link></li>
+                <li><Link to='/'> <i className="fas fa-home" /></Link></li>
                 <li><Link to='/about'>ABOUT</Link></li>
             </ul>
         </nav>
