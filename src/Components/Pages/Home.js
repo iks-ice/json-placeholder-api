@@ -2,7 +2,7 @@ import React from 'react'
 
 const Home = () => {
     return (
-        <div className='all-center'>
+        <div className='container all-center'>
             <h1>JSONPlaceholder</h1>
             <h3>Fake Online REST API for Testing and Prototyping</h3>
             <h3><strong>Serving ~350M requests per month</strong></h3>

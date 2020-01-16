@@ -7,10 +7,7 @@
     --light-color: #f4f4f4;
     --danger-color: #dc3545;
     --success-color: #28a745;
-}
-
-.bg-dark {
-    background: var(--dark-color);
+    --blue-color: blue;
 }
 
 * {
@@ -193,8 +190,8 @@ img {
 
 /* posts */
 .posts {
-    width: 80%;
-    margin: auto;
+    background: var(--light-color);
+    padding: 1rem;
 }
 .posts li {
     padding: 0.7rem;
@@ -245,7 +242,7 @@ img {
     border: none;
     cursor: pointer;
     margin-right: 0.5rem;
-    transition: opacity 0.2s ease-in;
+    transition: all 0.2s ease-in;
     outline: none;
 }
 
@@ -275,6 +272,24 @@ img {
     background: var(--light-color);
     color: #333;
     border-radius: 5px;
+    transition: background 0.2s;
+}
+.badge:hover {
+    background: var(--dark-color);
+}
+
+.navbar li {
+    display: inline-block;
+    font-size: 1.5rem;
+    text-align: center;
+    margin: 0.3rem;
+    border-radius: 5px;
+    background: var(--primary-color);
+    transition: opacity 0.2s;
+    cursor: pointer;
+}
+.navbar li:hover {
+    background: var(--dark-color);
 }
 
 .alert {
@@ -324,6 +339,13 @@ img {
     background: var(--success-color);
     color: #fff;
 }
+.btn-blue,
+.bg-blue,
+.badge-blue,
+.alert-blue {
+    background: var(--blue-color);
+    color: #fff;
+}
 
 .btn-white,
 .bg-white,
@@ -335,7 +357,8 @@ img {
 }
 
 .btn:hover {
-    opacity: 0.8;
+    background: var(--dark-color);
+    color: var(--light-color);
 }
 
 .bg-light,
