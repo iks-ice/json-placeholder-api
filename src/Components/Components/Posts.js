@@ -18,7 +18,7 @@ const Posts = () => {
             <Item key={post.id}
                 id={post.id}>
 
-                <h3>Title: {post.title}</h3>
+                <h3>{post.title}</h3>
                 <p>{post.body}</p>
                 <h4 className='cursor-pointer'>
                     <Comments postId={post.id} />

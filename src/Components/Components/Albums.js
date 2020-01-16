@@ -12,7 +12,7 @@ const Albums = () => {
         getList(path, id);
         // eslint-disable-next-line
     }, [])
-    return <ul className='posts'>
+    return <ul className='albums grid-4'>
         {list.map(album => (
             <Item key={album.id}
                 id={album.id}>
