@@ -10,27 +10,26 @@ const Comments = ({postId}) => {
     const [comments, setComments] = useState([]);
 
     useEffect(() => {
-        getList('/comments', postId, 'GET_COMMENTS');
-
+        const getComments = async () => {
+            let commentsForPost = await getList('/comments', postId, 'GET_COMMENTS');
+            setComments(commentsForPost);
+        }
+        getComments();
         // eslint-disable-next-line 
-    }, []);
+    }, [postId]);
 
     const open = e => {
         e.stopPropagation();
         setSelected(postId);
         setClosed(!closed);
     };
-    const formatEmail = email => {
-        const name = email.indexOf('@');
-        return name;
-    }
     const commentsBlock = (
         <>
             {comments.map(comment => (
+
                 <Item key={comment.id}
                     id={comment.id}
                     selected={selected}>
-
                     <h3>{comment.email}:   {comment.name}</h3>
                     <p>{comment.body}</p>
                     <p>{comment.id}</p>

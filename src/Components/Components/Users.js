@@ -1,7 +1,8 @@
 import React, {useContext, useEffect} from 'react';
-import {Switch, Route, Link} from 'react-router-dom';
+import {Switch, Route, NavLink} from 'react-router-dom';
 import Context from '../Context/Context';
 import User from './User';
+import Info from '../Layout/Info';
 
 export const Users = () => {
     const context = useContext(Context);
@@ -15,14 +16,15 @@ export const Users = () => {
             <ul className='users'>
                 {users.map(user => (
                     <li className='card all-center' key={user.id}>
-                        <Link className='' to={`/users/${user.id}`}>
+                        <NavLink activeClassName="selectedUser" to={`/users/${user.id}`}>
                             <h3 className='text-center'>{user.name}</h3>
-                        </Link>
+                        </NavLink>
                     </li>))
                 }
             </ul >
             <section className='user'>
                 <Switch>
+                    <Route exact path='/users/' component={Info} />
                     <Route path='/users/:id' component={User} />
                 </Switch>
             </section>

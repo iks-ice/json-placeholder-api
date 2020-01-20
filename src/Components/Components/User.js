@@ -1,18 +1,19 @@
 import React, {useEffect, useContext} from 'react';
 import {Switch, Route, NavLink, useRouteMatch} from 'react-router-dom';
-import axios from 'axios'
 import Posts from './Posts';
 import Albums from './Albums';
 import Todos from './Todos';
 import Context from '../Context/Context';
-import Info from '../Layout/Info';
 
 const User = () => {
     let {path, url, params: {id}} = useRouteMatch();
     const context = useContext(Context);
-    const {user, setData} = context;
+    const {user, setData, getList} = context;
     useEffect(() => {
         setData(url, 'GET_USER');
+        getList('/posts', id, 'GET_POSTS');
+        getList('/albums', id, 'GET_ALBUMS');
+        getList('/todos', id, 'GET_TODOS');
         // eslint-disable-next-line 
     }, [id]);
 
