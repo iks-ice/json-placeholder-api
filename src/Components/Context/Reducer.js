@@ -4,7 +4,10 @@ import {
     GET_POSTS,
     GET_COMMENTS,
     GET_LIST,
-    GET_USERS
+    GET_ALBUMS,
+    GET_TODOS,
+    GET_USERS,
+    GET_USER
 } from '../Types';
 
 export default (state, action) => {
@@ -13,6 +16,18 @@ export default (state, action) => {
             return {
                 ...state,
                 posts: action.payload,
+                loading: false
+            }
+        case GET_ALBUMS:
+            return {
+                ...state,
+                albums: action.payload,
+                loading: false
+            }
+        case GET_TODOS:
+            return {
+                ...state,
+                todos: action.payload,
                 loading: false
             }
         case GET_COMMENTS:
@@ -31,6 +46,12 @@ export default (state, action) => {
             return {
                 ...state,
                 users: action.payload,
+                loading: false
+            }
+        case GET_USER:
+            return {
+                ...state,
+                user: action.payload,
                 loading: false
             }
         case SET_LOADING:

@@ -7,6 +7,7 @@ export const GET_LIST = 'GET_LIST';
 export const GET_PHOTOS = 'GET_PHOTOS';
 export const GET_TODOS = 'GET_TODOS';
 export const GET_USERS = 'GET_USERS';
+export const GET_USER = 'GET_USER';
 
 export const getType = path => {
     switch (path) {

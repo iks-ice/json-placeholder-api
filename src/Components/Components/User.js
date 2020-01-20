@@ -1,26 +1,20 @@
-import React, {useEffect, useState} from 'react';
-import {Switch, Route, Link, useRouteMatch, useParams} from 'react-router-dom';
+import React, {useEffect, useContext} from 'react';
+import {Switch, Route, NavLink, useRouteMatch} from 'react-router-dom';
 import axios from 'axios'
 import Posts from './Posts';
 import Albums from './Albums';
 import Todos from './Todos';
+import Context from '../Context/Context';
+import Info from '../Layout/Info';
 
 const User = () => {
-    const {id} = useParams();
-    let {path, url} = useRouteMatch();
-    const [user, setUser] = useState({
-        address: {},
-        company: {}
-    });
-
+    let {path, url, params: {id}} = useRouteMatch();
+    const context = useContext(Context);
+    const {user, setData} = context;
     useEffect(() => {
-        const getUser = async id => {
-            let res = await axios.get(`https://jsonplaceholder.typicode.com/users/${id}`);
-            setUser(res.data);
-        }
-        getUser(id);
+        setData(url, 'GET_USER');
         // eslint-disable-next-line 
-    }, []);
+    }, [id]);
 
     const {name,
         username,
@@ -32,8 +26,6 @@ const User = () => {
     } = user;
     return (
         <div className="container">
-
-            <Link to='/users' className='btn btn-light'>Back to users</Link>
             <div className="card bg-light">
                 <div className="grid-2">
                     <div className='text-center'>
@@ -74,9 +66,9 @@ const User = () => {
             </div>
             <div className='card bg-light'>
                 <div className="grid-3">
-                    <Link className="btn btn-success text-center" to={`${url}/posts`} style={white}>Posts</Link>
-                    <Link className="btn btn-primary text-center" to={`${url}/albums`} style={white}>Albums</Link>
-                    <Link className="btn btn-blue text-center" to={`${url}/todos`} style={white}>Todos</Link>
+                    <NavLink activeClassName="selectedLink" className="btn btn-success text-center br-5" to={`${url}/posts`} style={white}>Posts</NavLink>
+                    <NavLink activeClassName="selectedLink" className="btn btn-primary text-center br-5" to={`${url}/albums`} style={white}>Albums</NavLink>
+                    <NavLink activeClassName="selectedLink" className="btn btn-blue text-center br-5" to={`${url}/todos`} style={white}>Todos</NavLink>
                 </div>
             </div>
             <Switch>

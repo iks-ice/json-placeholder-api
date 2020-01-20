@@ -2,20 +2,16 @@ import React, {useState, useEffect, useContext} from 'react';
 import Item from './Item';
 import CloseBtn from './CloseBtn';
 import Context from '../Context/Context';
-import axios from 'axios'
 
 const Comments = ({postId}) => {
     const context = useContext(Context);
-    const {selected, setSelected} = context;
+    const {selected, setSelected, getList} = context;
     const [closed, setClosed] = useState(true);
-    const [list, setList] = useState([]);
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
-        const getComments = async postId => {
-            let res = await axios.get('https://jsonplaceholder.typicode.com/comments');
-            setList(res.data.filter(comment => comment.postId === postId));
-        }
-        getComments(postId);
+        getList('/comments', postId, 'GET_COMMENTS');
+
         // eslint-disable-next-line 
     }, []);
 
@@ -24,25 +20,29 @@ const Comments = ({postId}) => {
         setSelected(postId);
         setClosed(!closed);
     };
+    const formatEmail = email => {
+        const name = email.indexOf('@');
+        return name;
+    }
     const commentsBlock = (
         <>
-            {list.map(item => (
-                <Item key={item.id}
-                    id={item.id}
+            {comments.map(comment => (
+                <Item key={comment.id}
+                    id={comment.id}
                     selected={selected}>
 
-                    <h3>Name: {item.name}</h3>
-                    <p>{item.body}</p>
-                    <p>CommentID: {item.id}</p>
+                    <h3>{comment.email}:   {comment.name}</h3>
+                    <p>{comment.body}</p>
+                    <p>{comment.id}</p>
                 </Item>
             ))}
             <CloseBtn close={open} />
         </>)
     return (
-        <ul onClick={open}>
+        <ul className='comments' onClick={open}>
             {
                 closed ?
-                    <p>Comments: {list.length}</p> :
+                    <p>Comments: {comments.length}</p> :
                     commentsBlock
             }
         </ul>

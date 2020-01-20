@@ -5,18 +5,18 @@ import Item from './Item';
 
 const Albums = () => {
     const context = useContext(Context);
-    const {list, getList} = context;
+    const {albums, getList} = context;
     const {path: p, params: {id}} = useRouteMatch();
     useEffect(() => {
         const path = p.slice(p.lastIndexOf('/'));
-        getList(path, id);
+        getList(path, id, 'GET_ALBUMS');
         // eslint-disable-next-line
     }, [])
-    return <ul className='albums grid-4'>
-        {list.map(album => (
+    return <ul className='list'>
+        {albums.map(album => (
             <Item key={album.id}
                 id={album.id}>
-                <h3>Title: {album.title}</h3>
+                <h3>{album.title}</h3>
             </Item>
         ))}
     </ul>

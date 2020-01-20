@@ -6,15 +6,15 @@ import Comments from './Comments';
 
 const Posts = () => {
     const context = useContext(Context);
-    const {list, getList} = context;
+    const {posts, getList} = context;
     const {path: p, params: {id}} = useRouteMatch();
     useEffect(() => {
         const path = p.slice(p.lastIndexOf('/'));
-        getList(path, id);
+        getList(path, id, 'GET_POSTS');
         // eslint-disable-next-line
     }, [])
-    return <ul className='posts'>
-        {list.map(post => (
+    return <ul className='list'>
+        {posts.map(post => (
             <Item key={post.id}
                 id={post.id}>
 

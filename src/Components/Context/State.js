@@ -2,7 +2,7 @@ import React, {useReducer} from 'react';
 import axios from 'axios';
 import Context from './Context';
 import Reducer from './Reducer'
-import {SET_SELECTED, SET_LOADING, GET_LIST, GET_USERS} from '../Types';
+import {SET_SELECTED, SET_LOADING, GET_LIST, GET_USERS, GET_USER} from '../Types';
 
 export const State = props => {
     const initialState = {
@@ -12,6 +12,7 @@ export const State = props => {
         albums: [],
         photos: [],
         todos: [],
+        user: {address: {}, company: {}},
         users: [],
         selected: undefined,
         loading: false
@@ -29,22 +30,33 @@ export const State = props => {
     });
 
     //Get data
-    const getUsers = async () => {
-        setLoading();
-        let res = await axios.get('https://jsonplaceholder.typicode.com/users');
+    const getResponse = async endPoint =>
+        axios.get(`https://jsonplaceholder.typicode.com${endPoint}`);
+
+    const setData = async (endPoint, type) => {
+        let res = await getResponse(endPoint);
         dispatch({
-            type: GET_USERS,
+            type,
             payload: res.data
         });
     }
+
     //Get list 
-    const getList = async (path, id) => {
+    const getList = async (path, id, type) => {
         setLoading();
-        let res = await axios.get(`https://jsonplaceholder.typicode.com${path}?userId=${id}`);
+        let searchParam;
+        if (path === '/posts' || '/albums') {
+            searchParam = 'userId';
+        }
+        if (path === '/comments') {
+            searchParam = 'postId';
+        }
+        let res = await axios.get(`https://jsonplaceholder.typicode.com${path}?${searchParam}=${id}`);
         dispatch({
-            type: GET_LIST,
+            type,
             payload: res.data
         });
+        return res.data;
     }
 
     return (
@@ -56,11 +68,12 @@ export const State = props => {
                 albums: state.albums,
                 photos: state.photos,
                 todos: state.todos,
+                user: state.user,
                 users: state.users,
                 selected: state.selected,
                 setSelected,
-                getUsers,
-                getList
+                getList,
+                setData
             }}>
             {props.children}
         </Context.Provider>
