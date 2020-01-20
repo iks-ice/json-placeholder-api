@@ -45,7 +45,7 @@ export const State = props => {
     const getList = async (path, id, type) => {
         setLoading();
         let searchParam;
-        if (path === '/posts' || '/albums') {
+        if (path === '/posts' || '/albums' || '/todos') {
             searchParam = 'userId';
         }
         if (path === '/comments') {

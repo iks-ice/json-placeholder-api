@@ -234,6 +234,12 @@ img {
 .selectedLink {
     box-shadow: 0 0 9px 5px rgb(0, 79, 197);
 }
+.selectedUser {
+    width: 100%;
+    display: block;
+    box-shadow: 0 0 2px 2px cornflowerblue;
+}
+
 .cursor-pointer {
     cursor: pointer;
 }
