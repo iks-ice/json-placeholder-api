@@ -5,7 +5,6 @@ import Navbar from './Components/Layout/Navbar';
 import About from './Components/Pages/About';
 import Home from './Components/Pages/Home';
 import Users from './Components/Components/Users';
-import User from './Components/Components/User';
 import './App.css';
 
 const titles = ['users'];
@@ -18,7 +17,6 @@ const App = () => {
                     <Route exact path='/' component={Home} />
                     <Route path='/about' component={About} />
                     <Route path='/users' component={Users} />
-                    {/* <Route path='/users/:id' component={User} /> */}
                 </Switch>
             </BrowserRouter>
         </State>

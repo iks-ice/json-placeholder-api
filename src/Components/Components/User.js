@@ -1,11 +1,9 @@
 import React, {useEffect, useContext} from 'react';
 import {Switch, Route, NavLink, useRouteMatch} from 'react-router-dom';
-import axios from 'axios'
 import Posts from './Posts';
 import Albums from './Albums';
 import Todos from './Todos';
 import Context from '../Context/Context';
-import Info from '../Layout/Info';
 
 const User = () => {
     let {path, url, params: {id}} = useRouteMatch();

@@ -132,6 +132,7 @@ img {
 }
 .info {
     width: 100%;
+    height: 50%;
     background: url(http://www.bookperhead.com/wp-content/uploads/2017/11/pay-per-head-information.jpg)
         center 20% no-repeat;
     background-size: 50%;
@@ -237,7 +238,12 @@ img {
 .selectedUser {
     width: 100%;
     display: block;
-    box-shadow: 0 0 2px 2px cornflowerblue;
+    box-shadow: 0 0 2px 2px orangered;
+    background: black;
+    color: whitesmoke;
+}
+.selectedUser:hover {
+    color: orangered;
 }
 
 .cursor-pointer {

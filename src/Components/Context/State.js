@@ -2,7 +2,7 @@ import React, {useReducer} from 'react';
 import axios from 'axios';
 import Context from './Context';
 import Reducer from './Reducer'
-import {SET_SELECTED, SET_LOADING, GET_LIST, GET_USERS, GET_USER} from '../Types';
+import {SET_SELECTED, SET_LOADING} from '../Types';
 
 export const State = props => {
     const initialState = {

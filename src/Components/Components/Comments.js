@@ -1,5 +1,4 @@
 import React, {useState, useEffect, useContext} from 'react';
-import {NavLink} from 'react-router-dom';
 import Item from './Item';
 import CloseBtn from './CloseBtn';
 import Context from '../Context/Context';
@@ -11,7 +10,11 @@ const Comments = ({postId}) => {
     const [comments, setComments] = useState([]);
 
     useEffect(() => {
-        getList('/comments', postId, 'GET_COMMENTS');
+        const getComments = async () => {
+            let commentsForPost = await getList('/comments', postId, 'GET_COMMENTS');
+            setComments(commentsForPost);
+        }
+        getComments();
         // eslint-disable-next-line 
     }, [postId]);
 
@@ -27,9 +30,6 @@ const Comments = ({postId}) => {
                 <Item key={comment.id}
                     id={comment.id}
                     selected={selected}>
-                    <NavLink>
-
-                    </NavLink>
                     <h3>{comment.email}:   {comment.name}</h3>
                     <p>{comment.body}</p>
                     <p>{comment.id}</p>
