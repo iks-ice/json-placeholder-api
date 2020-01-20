@@ -12,7 +12,9 @@ const Todos = () => {
         {todos.map(todo => (
             <Item key={todo.id}
                 id={todo.id}>
-                <h3>{todo.title}</h3>
+                <section className={todo.completed ? 'bg-success' : 'bg-danger'}>
+                    <h3>{todo.title}</h3>
+                </section>
             </Item>
         ))}
     </ul>
